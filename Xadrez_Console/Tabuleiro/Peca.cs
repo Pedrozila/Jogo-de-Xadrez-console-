@@ -8,5 +8,17 @@ namespace Xadrez_Console.Tabuleiro
 {
     internal class Peca
     {
+        public Posicao Posicao { get; set; }
+        public Cor Color { get; protected set; }
+        public int QteMovimentos { get; protected set; }
+        public Board Tabuleiro { get; protected set; }
+
+        public Peca(Posicao posicao, Cor color, Board tabuleiro)
+        {
+            Posicao = posicao;
+            Color = color;
+            Tabuleiro = tabuleiro;
+            QteMovimentos = 0;
+        }
     }
 }
