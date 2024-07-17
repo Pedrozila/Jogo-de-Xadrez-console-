@@ -13,9 +13,9 @@ namespace Xadrez_Console.Tabuleiro
         public int QteMovimentos { get; protected set; }
         public Board Tabuleiro { get; protected set; }
 
-        public Peca(Posicao posicao, Cor color, Board tabuleiro)
+        public Peca(Cor color, Board tabuleiro)
         {
-            Posicao = posicao;
+            Posicao = null;
             Color = color;
             Tabuleiro = tabuleiro;
             QteMovimentos = 0;
