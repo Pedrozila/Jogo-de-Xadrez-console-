@@ -7,19 +7,27 @@ namespace Xadrez_Console
     {
         static void Main(string[] args)
         {
-            //criando tabuleiro
-            Board tab = new Board(8, 8);
+            try
+            {
+                //criando tabuleiro
+                Board tab = new Board(8, 8);
 
-            //colocando uma peça
-            tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
-            tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 3));
-            tab.colocarPeca(new Rei(tab, Cor.Preta), new Posicao(2, 4));
+                //colocando uma peça
+                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
+                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 3));
+                tab.colocarPeca(new Rei(tab, Cor.Preta), new Posicao(0, 0));
 
 
 
-            //imprimindo tabuleiro na tela
-            Tela.imprimeirTabuleiro(tab);
-            Console.WriteLine();
+                //imprimindo tabuleiro na tela
+                Tela.imprimeirTabuleiro(tab);
+                Console.WriteLine();
+            }
+            catch (TabuleiroException ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
+             
         }
     }
 }
