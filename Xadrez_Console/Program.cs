@@ -9,6 +9,9 @@ namespace Xadrez_Console
         {
             try
             {
+                PosicaoXadrez pos = new PosicaoXadrez('c', 7);
+                Console.WriteLine(pos.toPosicao());
+
                 //criando tabuleiro
                 Board tab = new Board(8, 8);
 
