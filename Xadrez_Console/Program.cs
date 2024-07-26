@@ -12,13 +12,16 @@ namespace Xadrez_Console
                 PosicaoXadrez pos = new PosicaoXadrez('c', 7);
                 Console.WriteLine(pos.toPosicao());
 
+                Console.WriteLine();
+
                 //criando tabuleiro
                 Board tab = new Board(8, 8);
 
                 //colocando uma peça
                 tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
                 tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 3));
-                tab.colocarPeca(new Rei(tab, Cor.Preta), new Posicao(0, 0));
+                tab.colocarPeca(new Rei(tab, Cor.Preta), new Posicao(2, 4));
+                tab.colocarPeca(new Rei(tab, Cor.Branca), new Posicao(3, 4));
 
 
 
