@@ -9,10 +9,10 @@ namespace Xadrez_Console.Xadrez
         public Board tab { get; private set; }
         public int turno { get; private set; }
         public Cor jogadorAtual { get; private set; }
-        public bool terminada {  get; private set; }
+        public bool terminada { get; private set; }
         private HashSet<Peca> pecas;
         private HashSet<Peca> capturadas;
-        public bool xeque {  get; private set; }
+        public bool xeque { get; private set; }
 
         public PartidaDeXadrez()
         {
@@ -50,7 +50,7 @@ namespace Xadrez_Console.Xadrez
             }
             tab.colocarPeca(p, origem);
         }
-        
+
         public void realizaJogada(Posicao origem, Posicao destino)
         {
             Peca pecaCapturada = executarMovimento(origem, destino);
@@ -69,14 +69,22 @@ namespace Xadrez_Console.Xadrez
             {
                 xeque = false;
             }
+            if (testeXequemate(adversaria(jogadorAtual)))
+            {
+                terminada = true;
+            }
+            else
+            {
+                turno++;
+                mudaJogador();
+            }
 
-            turno++;
-            mudaJogador();
+            
         }
 
         public void validarPosicaoDeOrigem(Posicao pos)
         {
-            if (tab.peca(pos) == null) 
+            if (tab.peca(pos) == null)
             {
                 throw new TabuleiroException("Não existe peça aqui");
             }
@@ -92,7 +100,7 @@ namespace Xadrez_Console.Xadrez
 
         public void validarPosicaoDeDestino(Posicao origem, Posicao destino)
         {
-            if(!tab.peca(origem).podeMoverPara(destino))
+            if (!tab.peca(origem).podeMoverPara(destino))
             {
                 throw new TabuleiroException("Destino invalido");
             }
@@ -100,7 +108,7 @@ namespace Xadrez_Console.Xadrez
 
         private void mudaJogador()
         {
-            if(jogadorAtual == Cor.Branca)
+            if (jogadorAtual == Cor.Branca)
             {
                 jogadorAtual = Cor.Preta;
             }
@@ -113,7 +121,7 @@ namespace Xadrez_Console.Xadrez
         public HashSet<Peca> pecasCapturadas(Cor cor)
         {
             HashSet<Peca> aux = new HashSet<Peca>();
-            foreach(Peca x in capturadas)
+            foreach (Peca x in capturadas)
             {
                 if (x.Color == cor)
                 {
@@ -125,8 +133,8 @@ namespace Xadrez_Console.Xadrez
 
         public HashSet<Peca> pecasEmJogo(Cor cor)
         {
-            HashSet<Peca> aux = new HashSet<Peca> ();
-            foreach(Peca x in pecas)
+            HashSet<Peca> aux = new HashSet<Peca>();
+            foreach (Peca x in pecas)
             {
                 if (x.Color == cor)
                 {
@@ -138,7 +146,7 @@ namespace Xadrez_Console.Xadrez
 
         }
 
-        private Cor adversaria (Cor cor)
+        private Cor adversaria(Cor cor)
         {
             if (cor == Cor.Branca)
             {
@@ -174,6 +182,37 @@ namespace Xadrez_Console.Xadrez
                 }
             }
             return false;
+        }
+
+        public bool testeXequemate(Cor cor)
+        {
+            if (!estaEmXeque(cor))
+            {
+                return false;
+            }
+            foreach (Peca x in pecasEmJogo(cor))
+            {
+                bool[,] mat = x.movimentosPossiveis();
+                for (int i = 0; i < tab.Linha; i++)
+                {
+                    for (int j = 0; j < tab.Colunas; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Posicao origem = x.Posicao;
+                            Posicao destino = new Posicao(i, j);
+                            Peca pecaCapturada = executarMovimento(origem, destino);
+                            bool testeXeque = estaEmXeque(cor);
+                            desfazMovimento(origem, destino, pecaCapturada);
+                            if (!testeXeque)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
         }
 
 
