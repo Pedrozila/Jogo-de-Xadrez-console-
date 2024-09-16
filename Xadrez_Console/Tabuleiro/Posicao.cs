@@ -2,6 +2,8 @@
 {
     internal class Posicao
     {
+        internal int linha;
+
         public int Linha { get; set; }
         public int Coluna { get; set;}
 
