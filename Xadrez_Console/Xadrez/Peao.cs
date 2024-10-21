@@ -53,19 +53,19 @@ namespace Xadrez_Console.Xadrez
                     mat[posicao.Linha, posicao.Coluna] = true;
                 }
 
-                posicao.definirValores(posicao.linha - 2, posicao.Coluna);
+                posicao.definirValores(Posicao.Linha - 2, Posicao.Coluna);
                 if (Tabuleiro.posicaoValida(posicao) && livre(posicao) && QteMovimentos == 0)
                 {
                     mat[posicao.Linha, posicao.Coluna] = true;
                 }
 
-                posicao.definirValores(posicao.linha - 1, posicao.Coluna - 1);
+                posicao.definirValores(Posicao.Linha - 1, Posicao.Coluna - 1);
                 if (Tabuleiro.posicaoValida(posicao) && existeInimigo(posicao))
                 {
                     mat[posicao.Linha, posicao.Coluna] = true;
                 }
 
-                posicao.definirValores(posicao.linha - 1, posicao.Coluna + 1);
+                posicao.definirValores(Posicao.Linha - 1, Posicao.Coluna + 1);
                 if (Tabuleiro.posicaoValida(posicao) && existeInimigo(posicao))
                 {
                     mat[posicao.Linha, posicao.Coluna] = true;
@@ -79,20 +79,19 @@ namespace Xadrez_Console.Xadrez
                     mat[posicao.Linha, posicao.Coluna] = true;
                 }
 
-                posicao.definirValores(posicao.linha + 2, posicao.Coluna);
-                Posicao p2 = new Posicao(posicao.linha + 1, posicao.Coluna);
-                if (Tabuleiro.posicaoValida(p2) && livre(p2) && Tabuleiro.posicaoValida(posicao) && livre(posicao) && QteMovimentos == 0)
+                posicao.definirValores(Posicao.Linha + 2, Posicao.Coluna);
+                if (Tabuleiro.posicaoValida(posicao) && livre(posicao) && QteMovimentos == 0)
                 {
                     mat[posicao.Linha, posicao.Coluna] = true;
                 }
 
-                posicao.definirValores(posicao.linha + 1, posicao.Coluna - 1);
+                posicao.definirValores(Posicao.Linha + 1, Posicao.Coluna - 1);
                 if (Tabuleiro.posicaoValida(posicao) && existeInimigo(posicao))
                 {
                     mat[posicao.Linha, posicao.Coluna] = true;
                 }
 
-                posicao.definirValores(posicao.linha + 1, posicao.Coluna + 1);
+                posicao.definirValores(Posicao.Linha + 1, Posicao.Coluna + 1);
                 if (Tabuleiro.posicaoValida(posicao) && existeInimigo(posicao))
                 {
                     mat[posicao.Linha, posicao.Coluna] = true;
